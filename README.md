@@ -19,3 +19,9 @@
 二、个人项目
 
 1. [网易云音乐 for electron(正在开发中)](https://github.com/HuangJunjia/3rdNeteaseCloudDemo)
+
+三、经验整理
+
+1. [网易云音乐 for electron经验整理](https://github.com/HuangJunjia/blog/blob/master/files/NeteseCloudMusicDev/0.md)
+2. [git使用经验整理](https://github.com/HuangJunjia/blog/blob/master/git/0.md)
+
