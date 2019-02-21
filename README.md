@@ -20,11 +20,12 @@
 #### 二、[个人项目](https://github.com/HuangJunjia)
 
 1. [网易云音乐 for electron(正在开发中)](https://github.com/HuangJunjia/3rdNeteaseCloudDemo)
+2. [mini网易云音乐 for electron](./files/miniNeteseCloudMusic/0.md)
 
 ##### 三、经验整理
 
 1. [网易云音乐 for electron经验整理](https://github.com/HuangJunjia/blog/blob/master/files/NeteseCloudMusicDev/0.md)
 2. [git使用经验整理](https://github.com/HuangJunjia/blog/blob/master/files/git/0.md)
 
-（如侵必删，请联系我：[huangjunjia1995@live.com](huangjunjia1995@live.com)）
+（如侵必删，麻烦联系我：[huangjunjia1995@live.com](https://github.com/HuangJunjia)）
 
