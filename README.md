@@ -15,12 +15,13 @@
 #### 一、[组件 components](https://github.com/HuangJunjia/component)
 
 1. [大转盘组件](./files/components/0.md)
+2. [樱花树、樱花瓣飘落组件](./components/1.md)
 
-二、个人项目
+#### 二、[个人项目](https://github.com/HuangJunjia)
 
 1. [网易云音乐 for electron(正在开发中)](https://github.com/HuangJunjia/3rdNeteaseCloudDemo)
 
-三、经验整理
+##### 三、经验整理
 
 1. [网易云音乐 for electron经验整理](https://github.com/HuangJunjia/blog/blob/master/files/NeteseCloudMusicDev/0.md)
 2. [git使用经验整理](https://github.com/HuangJunjia/blog/blob/master/files/git/0.md)
