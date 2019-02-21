@@ -15,7 +15,7 @@
 #### 一、[组件 components](https://github.com/HuangJunjia/component)
 
 1. [大转盘组件](./files/components/0.md)
-2. [樱花树、樱花瓣飘落组件](./components/1.md)
+2. [樱花树、樱花瓣飘落组件](./files/components/1.md)
 
 #### 二、[个人项目](https://github.com/HuangJunjia)
 
