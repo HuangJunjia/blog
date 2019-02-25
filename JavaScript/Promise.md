@@ -1,5 +1,11 @@
 ## Promise学习
 
+-----
+
+[TOC]
+
+-----
+
 ##### 一、什么是Promise
 
 Promise 是目前在 JavaScript 异步编程中比较流行的解决方案之一，Promise 用于表示一个异步操作的最终状态（完成或者失败），并且可以链式的处理异步请求（`.then()`方法），很好的处理异常问题，是解决回调地狱的良好方案之一。MDN对 Promise 的[解释](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%8F%8F%E8%BF%B0)如下：
@@ -113,7 +119,31 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
    返回一个状态由给定 value 决定的 Promise 对象。如果该值是一个 Promise 对象，则直接返回该对象；如果该值是 thenable (即，带有`.then()`方法的对象)，返回的 Promise 对象的最终状态由`.then()`方法执行决定；否则的话(该 value 为空，基本类型或者不带`.then()`方法的对象)，返回的 Promise 对象状态为`fulfilled`，并且将该 value 传递给对应的`.then()`方法。通常而言，如果你不知道一个值是否是 Promise 对象，使用`Promise.resolve(value)` 来返回一个 Promise 对象,这样就能将该 value 以 Promise 对象形式使用。
 
-##### 八、Promise 的优势
+##### 八、Promise 的原型
+
+该章节下内容主要摘自[MDN的Promise原型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#Promise_%E5%8E%9F%E5%9E%8B)
+
+* 属性：
+
+  * `Promise.prototype.construtor`：
+
+    返回被创建的实例函数.  默认为 Promise 函数。
+
+* 方法：
+
+  * `Promise.prototype.catch(onRejected)`：
+
+    添加一个拒绝(`rejection`) 回调到当前 promise，返回一个新的 promise。当这个回调函数被调用，新 promise 将以它的返回值来 resolve，否则如果当前 promise 进入`fulfilled `状态，则以当前 promise 的完成结果作为新promise的完成结果.
+
+  * `Promise.prototype.then(onFulfilled, onRejected)`：
+
+    添加解决(`fulfillment`)和拒绝(`rejection`)回调到当前 promise，返回一个新的 promise，将以回调的返回值来resolve。
+
+  * `Promise.prototype.finally(onFinally)`：
+
+    添加一个事件处理回调于当前 promise 对象，并且在原 promise 对象解析完毕后，返回一个新的 promise 对象。回调会在当前 promise 运行完毕后被调用，无论当前 promise 的状态是完成(`fulfilled`)还是失败(`rejected`)。
+
+##### 九、Promise 的优势
 
 1. 链式调用：
 
@@ -131,7 +161,7 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
    Promise 的`Promise.all(iterable)`方法和`Promise.race(iterable)`方法可以用于解决 Promise 始终未决议和并行 Promise 嵌套的问题。
 
-##### 九、Promise对象的不足
+##### 十、Promise对象的不足
 
 1. 每个`.then()`方法都是一个独立的作用域：
 
@@ -145,7 +175,7 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
    Promise 只会从`pending`状态转变为`fullfilled`状态或者`rejected`状态，所以我们无法得知`pending`阶段的进度。
 
-##### 十、应用 Promise 的简单例子
+##### 十一、应用 Promise 的简单例子
 
 ``` javascript
 // 使用 Promise 对ajax进行封装
