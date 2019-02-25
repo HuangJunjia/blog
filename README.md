@@ -26,6 +26,8 @@
 
 1. [网易云音乐 for electron经验整理](https://github.com/HuangJunjia/blog/blob/master/files/NeteseCloudMusicDev/0.md)
 2. [git使用经验整理](https://github.com/HuangJunjia/blog/blob/master/files/git/0.md)
+3. [webpack学习](./files/webpack/0.md)
+4. [Promise学习](./JavaScripte/Promise.md)
 
 （如侵必删，麻烦联系我：[huangjunjia1995@live.com](https://github.com/HuangJunjia)）
 
