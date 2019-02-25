@@ -216,3 +216,12 @@ function readFile(url) {
 }
 ```
 
+-----
+
+###### 参考资料（排名不分先后顺序）
+
+1. [@南波的《JS异步编程之Promise》](https://juejin.im/post/5c724f14518825626b76f6d5)
+2. [@南波的《JS异步编程之callback》](https://juejin.im/post/5c691ef851882562c0496759)
+3. [@蟹丸的《前端异步技术之Promise》](https://juejin.im/post/5c71927c6fb9a049cd54d2de)
+4. [MDN的Promise文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
