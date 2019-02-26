@@ -6,13 +6,25 @@
 
 -----
 
-##### 一、什么是Promise
+##### 一、回调函数的问题
+
+学过 JavaScript 的人都应该清楚一件事，JavaScript语言的一大特点就是`单线程`，目的是为了提高效率。因此在 JavaScript 中回调函数不会立即执行，而是由事件轮询去检测事件是否执行完毕，当执行完毕并且有结果之后，将执行结果放入回调函数中，然后将回调函数添加到事件队列中等待被执行。
+
+在这里会有一些关于回调函数的问题：
+
+1. “回调地狱”：即“洋葱模型”，回调函数作为异步函数的参数，会形成多级的嵌套，当嵌套级数过多时，代码逻辑会变得混乱，无法将错误的捕捉和处理这个简单的工作做好，只能在回调函数的内部通过`try{}...catch(){}`捕获并处理异常。
+2. 回调函数的执行方式不符合自然语言的线性思维方式，不易理解。
+3. 控制反转，即控制权不在我们手中，而是在其他人的代码中。例如该异步函数是第三方库，当我们把回调函数传给第三方库的时候，我们并不能知道我们的异步函数在第三方库里做了什么，在调用回调函数之前做了什么。
+
+解决回调函数的问题有很多种方法，其中比较好的一种方式就是使用 Promise 对象。
+
+##### 二、什么是Promise
 
 Promise 是目前在 JavaScript 异步编程中比较流行的解决方案之一，Promise 用于表示一个异步操作的最终状态（完成或者失败），并且可以链式的处理异步请求（`.then()`方法），很好的处理异常问题，是解决回调地狱的良好方案之一。MDN对 Promise 的[解释](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%8F%8F%E8%BF%B0)如下：
 
 > `Promise` 对象是一个代理对象（代理一个值），被代理的值在 `Promise `对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。 这让异步方法可以像同步方法那样返回值，但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的 `promise `对象。
 
-##### 二、Promise 的状态
+##### 三、Promise 的状态
 
 Promise 一共包含有三种状态：
 
@@ -23,16 +35,6 @@ Promise 一共包含有三种状态：
 Promise 无论如何都会返回一个结果，不是成功，就是失败。并且 Promise 的设计具有原子性，即当状态从`pending`状态转变为`fulfilled`状态或者`rejected`状态后，将不能改变。
 
 在`pending`状态中，Promise 可能触发`fulfilled`状态并将成功结果传递给相应的状态处理方法，也可能触发`rejected`状态并将失败信息返回。
-
-##### 三、回调函数的问题
-
-学过 JavaScript 的人都应该清楚一件事，JavaScript语言的一大特点就是`单线程`，目的是为了提高效率。因此在 JavaScript 中回调函数不会立即执行，而是由事件轮询去检测事件是否执行完毕，当执行完毕并且有结果之后，将执行结果放入回调函数中，然后将回调函数添加到事件队列中等待被执行。
-
-在这里会有一些关于回调函数的问题：
-
-1. “回调地狱”：即“洋葱模型”，回调函数作为异步函数的参数，会形成多级的嵌套，当嵌套级数过多时，代码逻辑会变得混乱，无法将错误的捕捉和处理这个简单的工作做好，只能在回调函数的内部通过`try{}...catch(){}`捕获并处理异常。
-2. 回调函数的执行方式不符合自然语言的线性思维方式，不易理解。
-3. 控制反转，即控制权不在我们手中，而是在其他人的代码中。例如该异步函数是第三方库，当我们把回调函数传给第三方库的时候，我们并不能知道我们的异步函数在第三方库里做了什么，在调用回调函数之前做了什么。
 
 ##### 四、Promise 的原理
 
@@ -121,8 +123,6 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
 ##### 八、Promise 的原型
 
-该章节下内容主要摘自[MDN的Promise原型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#Promise_%E5%8E%9F%E5%9E%8B)
-
 * 属性：
 
   * `Promise.prototype.construtor`：
@@ -133,15 +133,15 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
   * `Promise.prototype.catch(onRejected)`：
 
-    添加一个拒绝(`rejection`) 回调到当前 promise，返回一个新的 promise。当这个回调函数被调用，新 promise 将以它的返回值来 resolve，否则如果当前 promise 进入`fulfilled `状态，则以当前 promise 的完成结果作为新promise的完成结果.
+    当`.then()`方法中发生错误时，`.catch()`方法会捕获并处理错误，并将一个`rejection(拒绝)`回调到当前的 promise，然后返回一个新的 promise。新的 promise 以`.catch()`的返回值来 resolve。
 
   * `Promise.prototype.then(onFulfilled, onRejected)`：
 
-    添加解决(`fulfillment`)和拒绝(`rejection`)回调到当前 promise，返回一个新的 promise，将以回调的返回值来resolve。
+    在当前的 promise 中添加`fulfilled(解决)`回调和`rejuection(拒绝)`回调，并以回调的返回值来 resolve。
 
   * `Promise.prototype.finally(onFinally)`：
 
-    添加一个事件处理回调于当前 promise 对象，并且在原 promise 对象解析完毕后，返回一个新的 promise 对象。回调会在当前 promise 运行完毕后被调用，无论当前 promise 的状态是完成(`fulfilled`)还是失败(`rejected`)。
+    无论 promise 的状态是处于`fulfilled(成功)`状态还是`rejected(失败)`状态，都会调用的一个方法，并且在该回调中返回一个新的 promise 对象。
 
 ##### 九、Promise 的优势
 
