@@ -42,7 +42,7 @@ Promise 无论如何都会返回一个结果，不是成功，就是失败。并
 
 从本文前面的内容中可知 Promise 有三个状态，并且会返回一个成功或者失败的结果。
 
-![图源来自[《JS异步编程之Promise》](https://juejin.im/post/5c724f14518825626b76f6d5)](./imgs/0.jpg)
+![图源来自[《JS异步编程之Promise》](https://juejin.im/post/5c724f14518825626b76f6d5)](./imgs/0.png)
 
 (图来自于https://juejin.im/post/5c724f14518825626b76f6d5)
 
