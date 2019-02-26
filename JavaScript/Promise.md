@@ -36,6 +36,8 @@ Promise 无论如何都会返回一个结果，不是成功，就是失败。并
 
 在`pending`状态中，Promise 可能触发`fulfilled`状态并将成功结果传递给相应的状态处理方法，也可能触发`rejected`状态并将失败信息返回。
 
+![图源自[@MDN的Promise文档](https://mdn.mozillademos.org/files/8633/promises.png)](./imgs/promises.png)
+
 ##### 四、Promise 的原理
 
 从本文前面的内容中可知 Promise 有三个状态，并且会返回一个成功或者失败的结果。
@@ -93,33 +95,31 @@ new Promise( function(resolve, reject) {...} /* executor */  );
 
 ##### 六、Promise 的属性
 
-1. `Promise.length`：
+* `Promise.length`：
 
    Promise 的 length 属性，其值始终为 1，即构造器参数的数目。
 
-2. `Promise.prototype`：
+* `Promise.prototype`：
 
    Promise 构造器的原型。
 
 ##### 七、Promise 的方法
 
-该章节下内容主要摘自[MDN的Promise方法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise#%E6%96%B9%E6%B3%95)
+* `Promise.all(iterable)`：
 
-1. `Promise.all(iterable)`：
+  当 promise 对象中 iterable 参数对象里所有的 promise 对象都成功执行的时候触发的一个方法，若 iterable 中有任何一个 promise 对象执行失败则会立即触发该 promise 对象的失败。该方法在触发成功状态之后，会将 iterable 参数里所有 promise 对象返回值放入一个数组中并将该数组作为成功回调的返回值，该数组中各个 promise 对象的返回值顺序与 iterable 的顺序保持一致。如果触发了失败状态，则该方法会将第一个触发失败状态的 promise 对象的错误信息作为它的错误信息返回。该方法常用于处理多个 promise 对象的状态合集。
 
-   该方法会返回一个新的 promise 对象，并且该 promise 对象在 iterable 参数对象里所有的 promise 对象都执行成功时才会触发成功，当 iterable 里有任何一个 promise 对象失败则会立即触发该 promise 对象的失败。这个新的 promise 对象在触发成功状态以后，会把一个包含 iterable 里所有 promise 返回值的数组作为成功回调的返回值，顺序跟 iterable 的顺序保持一致；如果这个新的 promise 对象触发了失败状态，它会把 iterable 里第一个触发失败的 promise 对象的错误信息作为它的失败错误信息。`Promise.all()`方法常被用于处理多个 promise 对象的状态集合。  
+* `Promise.race(iterable)`：
 
-2. `Promise.race(iterable)`：
+  iterable 参数中只要有一个 promise 对象触发了额成功状态或者失败状态，就会将该 promise 对象的值作为它的返回值。
 
-   当 iterable 参数里的任意一个子 promise 被成功或失败后，父 promise 马上也会用子 promise 的成功返回值或失败详情作为参数调用父 promise 绑定的相应句柄，并返回该 promise 对象。
+* `Promise.reject(reason)`：
 
-3. `Promise.reject)reason`：
+  返回一个状态为失败的 Promise 对象，并将给定的失败信息传递给对应的处理方法。
 
-   返回一个状态为失败的 Promise 对象，并将给定的失败信息传递给对应的处理方法。
+* `Promise.resolve(value)`：
 
-4. `Promise.resolve(value)`：
-
-   返回一个状态由给定 value 决定的 Promise 对象。如果该值是一个 Promise 对象，则直接返回该对象；如果该值是 thenable (即，带有`.then()`方法的对象)，返回的 Promise 对象的最终状态由`.then()`方法执行决定；否则的话(该 value 为空，基本类型或者不带`.then()`方法的对象)，返回的 Promise 对象状态为`fulfilled`，并且将该 value 传递给对应的`.then()`方法。通常而言，如果你不知道一个值是否是 Promise 对象，使用`Promise.resolve(value)` 来返回一个 Promise 对象,这样就能将该 value 以 Promise 对象形式使用。
+> 返回一个状态由给定 value 决定的 Promise 对象。如果该值是一个 Promise 对象，则直接返回该对象；如果该值是 thenable (即，带有`.then()`方法的对象)，返回的 Promise 对象的最终状态由`.then()`方法执行决定；否则的话(该 value 为空，基本类型或者不带`.then()`方法的对象)，返回的 Promise 对象状态为`fulfilled`，并且将该 value 传递给对应的`.then()`方法。通常而言，如果你不知道一个值是否是 Promise 对象，使用`Promise.resolve(value)` 来返回一个 Promise 对象,这样就能将该 value 以 Promise 对象形式使用。
 
 ##### 八、Promise 的原型
 
